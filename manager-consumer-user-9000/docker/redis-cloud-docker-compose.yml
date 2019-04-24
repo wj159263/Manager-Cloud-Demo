@@ -1,0 +1,27 @@
+#复制3份相同的sentinel1.conf  (sentine时用来监控redis的，redis其中一台挂了，它本身不会用其他的替换，sentine能帮)
+#docker exec -it redis-sentinel-1 /bin/bash
+ #搭建完成后执行查看是否成功
+ #redis-cli -p 26379
+ #sentinel master mymaster
+ #sentinel slaves mymaster
+version: '3'
+services:
+  master:
+    image: redis
+    container_name: redis-master
+    ports:
+      - 6379:6379
+
+  slave1:
+    image: redis
+    container_name: redis-slave-1
+    ports:
+      - 6380:6379
+    command: redis-server --slaveof redis-master 6379
+
+  slave2:
+    image: redis
+    container_name: redis-slave-2
+    ports:
+      - 6381:6379
+    command: redis-server --slaveof redis-master 6379

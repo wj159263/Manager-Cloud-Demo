@@ -1,0 +1,25 @@
+version: "3"
+services:
+  eureka1: #注意：这里的名字也不能和下面的的相同
+    restart: always
+    image: manager-eureka-7000  #改镜像是Dockerfile生成的
+    container_name: manager-eureka-7000-c1 #注意：容器名字不能和下面的相同
+    ports:
+      - 7000:7000
+
+#单机就不用下面2个eureka
+  eureka2:
+      restart: always
+      image: manager-eureka-7000  #改镜像是Dockerfile生成的
+      container_name: manager-eureka-7000-c2
+      ports:
+        - 7001:7000
+  eureka3:
+      restart: always
+      image: manager-eureka-7000  #改镜像是Dockerfile生成的
+      container_name: manager-eureka-7000-c3
+      ports:
+        - 7002:7000
+
+#执行docker-compose up -p
+#docker-compose stop停止该compose容器 docker-compose start 开始容器，docker-compose down停止并删除容器

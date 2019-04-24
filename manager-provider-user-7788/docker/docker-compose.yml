@@ -1,0 +1,25 @@
+version: "3"
+services:
+  provider-user-mysql:
+    container_name: provider-user-mysql-c1
+    image: mysql:5.7.25
+    ports:
+      - 3306:3306
+    command:
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+      --default-time-zone=+8:00
+      --lower_case_table_names=1
+    environment:
+      TZ: Asia/Shanghai
+      MYSQL_ROOT_PASSWORD: root
+    restart: always
+    volumes:
+       - /usr/local/docker/manager/mysql/provider-user/data:/var/lib/mysql
+
+  provider-user:
+      restart: always
+      image: manager-provider-user-7788  #改镜像是Dockerfile生成的
+      container_name: manager-provider-user-7788-c1
+      ports:
+        - 7788:7788

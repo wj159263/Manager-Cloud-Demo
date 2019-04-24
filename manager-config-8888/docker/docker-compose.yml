@@ -1,0 +1,11 @@
+version: "3"
+services:
+  net-config:
+    restart: always
+    image: manager-config-8888  #改镜像是Dockerfile生成的
+    container_name: manager-config-8888-c1
+    ports:
+      - 8888:8888
+
+#执行docker-compose up -p
+#docker-compose stop停止该compose容器 docker-compose start 开始容器，docker-compose down停止并删除容器

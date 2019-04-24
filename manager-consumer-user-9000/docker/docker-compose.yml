@@ -1,0 +1,11 @@
+version: "3"
+services:
+  nginx:
+    restart: always
+    image: nginx
+    container_name: nginx1
+    ports:
+      - 80:80
+    volumes:
+      - /usr/local/docker/manager/nginx/conf/nginx.conf:/etc/nginx/nginx.conf
+      - /usr/local/docker/manager/nginx/root:/var/nginx/root

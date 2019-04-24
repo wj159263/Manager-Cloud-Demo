@@ -1,0 +1,7 @@
+spring:
+   cloud:
+     config:
+       uri: http://localhost:8888
+       name: provider-user-7788   #这个对应github的config-repo目录的application-dept-dev.yml文件的application-dept
+       label: master
+       profile: dev # application-dept-dev.yml文件后面的dev

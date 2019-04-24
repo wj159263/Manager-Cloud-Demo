@@ -1,0 +1,7 @@
+spring:
+   cloud:
+     config:
+       uri: http://192.168.38.128:8888
+       name: sso-8880   #这个对应github的config-repo目录的application-dept-dev.yml文件的application-dept
+       label: master
+       profile: prod # application-dept-dev.yml文件后面的dev

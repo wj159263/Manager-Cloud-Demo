@@ -18,6 +18,7 @@ public class RedisServiceImpl implements RedisService {
 
     @Override
     public Object get(String key) {
+        //redisTemplate.expire
         Object o = redisTemplate.opsForValue().get(key);
        return o;
     }

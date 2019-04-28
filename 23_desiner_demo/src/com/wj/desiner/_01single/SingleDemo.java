@@ -13,7 +13,7 @@ public class SingleDemo implements Serializable{
     //SingleData类并没有实际作用，只是静态内部类
     static class SingleData{
         //这里创建的是SingleDemo，不是SingleData
-      private final static SingleDemo instance= new SingleDemo();
+      private final static SingleDemo instance = new SingleDemo();
     }
     private SingleDemo(){}
 

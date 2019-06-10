@@ -1,32 +1,42 @@
 package com.wj.manager.service;
 
+import com.codingapi.txlcn.tc.annotation.LcnTransaction;
+import com.wj.manager.common.entity.SysUser;
 import com.wj.manager.dto.AuthToken;
+import com.wj.manager.feign.UserServiceFeign;
 import com.wj.manager.mapper.SysUserMapper;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.aop.framework.AopContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.ClientHttpResponse;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionCallback;
+import org.springframework.transaction.support.TransactionTemplate;
 import org.springframework.util.Base64Utils;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.DefaultResponseErrorHandler;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.context.ContextLoader;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.Map;
+import java.util.concurrent.*;
 
 @Service
 public class AuthServiceImpl implements AuthService {
 
     @Autowired
     SysUserMapper userMapper;
-    @Autowired
-    PasswordEncoder encoder;
+   /* @Autowired
+    PasswordEncoder encoder;*/
 
     @Override
     public AuthToken login(String username, String password) {
@@ -120,5 +130,137 @@ public class AuthServiceImpl implements AuthService {
         String value = clientId+":"+clientSecret;
         byte[] encode = Base64Utils.encode(value.getBytes());
         return "Basic "+new String(encode);
+    }
+
+    @Transactional
+    @Override
+    public void testTran(){
+        System.out.println("aopPorxy:"+ AopContext.currentProxy().getClass().getName());
+        AuthService proxy = (AuthService) AopContext.currentProxy();
+       // System.out.println("service.this.class:"+this.getClass().getName());
+        SysUser user = new SysUser();
+        user.setAccount("999");
+        user.setPassword("111111");
+        user.setName("张良");
+        userMapper.insert(user);
+        ThreadPoolExecutor executor = new ThreadPoolExecutor(3, 4, 20, TimeUnit.MINUTES, new LinkedBlockingQueue<>(1000));
+        FutureTask<Object> futureTask = new FutureTask<>(new Callable<Object>() {
+            @Override
+            public Object call() throws Exception {
+                System.out.println("dasfaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+                try {
+                    proxy.testTran2();
+                } catch (Exception e) {
+                    System.out.println(e.getMessage() + "dasaaaaaaa");
+                    throw e;
+                }
+                return "dasd";
+            }
+        });
+        executor.submit(futureTask);
+        try {
+            Object o = futureTask.get();
+            System.out.println();
+        } catch (Exception e) {
+            e.printStackTrace();
+            //throw new RuntimeException(e);
+        }
+      /*  new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("dasfaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+                proxy.testTran2();
+            }
+        }).start();*/
+
+        //((AuthService) AopContext.currentProxy()).testTran2();
+       /*try{
+             ((AuthService) AopContext.currentProxy()).testTran2();
+        }catch (Exception e){
+            System.out.println(e.getMessage()+"::::::::::::::::::::::::::::");
+        }*/
+
+
+    }
+
+    @Override
+    @Transactional(propagation= Propagation.REQUIRES_NEW)
+    public void testTran2() {
+        Map<String, String> getenv = System.getenv();
+        String number = System.getenv("NUMBER_OF_PROCESSORS");
+        SysUser user = new SysUser();
+        user.setAccount("996");
+        user.setPassword("111111");
+        user.setName("张飞");
+        userMapper.insert(user);
+        int x=5/0;
+        /*try{
+            int x =1/0;
+        }catch (Exception e){
+            System.out.println(e.getMessage()+"::::::::::::::::::::::::::::");
+        }*/
+    }
+
+    @Autowired
+    TransactionTemplate transactionTemplate;
+
+    @Override
+    public void testProgramTran() {
+        transactionTemplate.execute(new TransactionCallback(){
+
+            @Override
+            public Object doInTransaction(TransactionStatus transactionStatus) {
+                SysUser user = new SysUser();
+                user.setAccount("999");
+                user.setPassword("111111");
+                user.setName("张良");
+                userMapper.insert(user);
+                // testProgramTran2();
+                return null;
+            }
+        });
+        testProgramTran2();
+    }
+
+    @Override
+    public void testProgramTran2() {
+        //编程式事务，出错会自动回滚
+        Object execute = transactionTemplate.execute(new TransactionCallback() {
+
+            @Override
+            public Object doInTransaction(TransactionStatus transactionStatus) {
+                SysUser user = new SysUser();
+                user.setAccount("996");
+                user.setPassword("111111");
+                user.setName("张飞");
+                userMapper.insert(user);
+                int x = 5 / 0;
+               /* try {
+                    int x = 5 / 0;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }*/
+                return "dasdafaaa";
+            }
+        });
+        //execute是上面的返回值，即"dasdafaaa"
+        System.out.println(execute);
+    }
+
+    @Autowired
+    UserServiceFeign userServiceFeign;
+
+    @Override
+    //@GlobalTransactional(name = "fescar-test-tx")
+    @LcnTransaction
+    @Transactional
+    public void testAlibabaGrobalTransaction() {
+        SysUser user = new SysUser();
+        user.setPassword("22222");
+        user.setAccount("ccccc");
+        user.setName("刘备");
+        userMapper.insert(user);
+        System.out.println("------------------------分割-----------------------");
+        userServiceFeign.testGlobalTran();
     }
 }

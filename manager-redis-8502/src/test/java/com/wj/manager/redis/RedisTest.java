@@ -4,6 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wj.manager.common.dto.BaseResult;
 import com.wj.manager.redis.controller.RedisController;
+import com.wj.manager.redis.service.impl.RedisServiceImpl;
+import com.wj.manager.redis.service.impl.RedisServiceImpl2;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +25,7 @@ import java.util.concurrent.TimeUnit;
 public class RedisTest {
     @Autowired
     StringRedisTemplate redisTemplate;
-    @Autowired
-    RedisController controller;
+
     @Test
     public void test11() throws Exception{
         redisTemplate.opsForValue().set("aa","123123",5, TimeUnit.MINUTES);
@@ -82,5 +83,21 @@ public class RedisTest {
         List<Object> reslutMapList1=redisTemplate.opsForHash().values("map");
         Set<Object> resultMapSet1=redisTemplate.opsForHash().keys("map");
 
+    }
+
+    @Autowired
+    RedisServiceImpl2 redisServiceImpl2;
+
+    @Autowired
+    RedisServiceImpl redisServiceImpl;
+
+    @Test
+    public void testddas(){
+        redisServiceImpl2.test();
+    }
+
+    @Test
+    public void testddas23(){
+        redisServiceImpl.test();
     }
 }

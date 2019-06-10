@@ -5,6 +5,10 @@ server:
 #  hystrix:
 #    enabled: true
 
+feign:
+  hystrix:
+    enabled: true
+
 
 #注册服务
 eureka:
@@ -22,7 +26,7 @@ eureka:
 
 # eureka的info页面配置，build.version以$开头结尾，必须再parent工程中配置build
 info:
-  app.name: manager-oauth2-8859
+  app.name: ${spring.application.name}
   company.name: xx.com
   build.artifactId: $project.artifactId$
   build.version: $project.version$
@@ -57,3 +61,9 @@ spring:
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   #type-aliases-package:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+#tx-lcn:
+ # client:
+  #  manager-address: 127.0.0.1:8070

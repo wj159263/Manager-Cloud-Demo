@@ -1,3 +1,4 @@
+/*
 package com.wj.manager.dto;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -125,3 +126,4 @@ public class JwtUser extends User {
         this.ifAdmin = ifAdmin;
     }
 }
+*/

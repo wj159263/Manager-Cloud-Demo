@@ -1,3 +1,4 @@
+/*
 package com.wj.manager.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +15,12 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 
+*/
 /**
  * @EnableAuthorizationServer 该注解表示开启认证服务，服务可以生成token
  * 当继承了AuthorizationServerConfigurerAdapter，oauth2默认的配置就取消了，要自己设置AuthenticationManager、userDetailsService
- */
+ *//*
+
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
@@ -80,4 +83,4 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
 
 
 
-}
+}*/

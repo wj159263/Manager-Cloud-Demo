@@ -19,6 +19,17 @@ public class AuthController {
     @Autowired
     AuthService authService;
 
+    @GetMapping("/test/gtran")
+    public Object testAlibabaGrobalTransaction(){
+        authService.testAlibabaGrobalTransaction();
+        return "sucess++";
+    }
+
+    @GetMapping("/test/g")
+    public Object tessaction(){
+        return "sucess++";
+    }
+
     @PostMapping("/auth/login")
     public ResponseResult login(@ModelAttribute SysUser loginUser, HttpServletRequest request){
         if(loginUser == null || StringUtils.isBlank(loginUser.getAccount())|| StringUtils.isBlank(loginUser.getPassword())){
@@ -36,12 +47,14 @@ public class AuthController {
 
     @GetMapping("/auth/logout")
     public ResponseResult logout(HttpServletRequest request){
-
+        authService.testProgramTran();
        return ResponseResult.success("退出登陆成功");
     }
 
-    @PostMapping("/auth/unlock")
+    @GetMapping("/auth/unlock")
     public ResponseResult unlock(String password){
+        System.out.println(authService.getClass().getName());
+        authService.testTran();
             return ResponseResult.success();
     }
 

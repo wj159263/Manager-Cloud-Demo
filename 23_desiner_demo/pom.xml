@@ -16,6 +16,34 @@
                     <artifactId>cglib</artifactId>
                     <version>3.1</version>
                 </dependency>
+            <!-- https://mvnrepository.com/artifact/io.netty/netty-all -->
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-all</artifactId>
+                <version>4.1.36.Final</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.jboss.marshalling/jboss-marshalling-osgi -->
+            <dependency>
+                <groupId>org.jboss.marshalling</groupId>
+                <artifactId>jboss-marshalling-osgi</artifactId>
+                <version>2.0.6.Final</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.jboss.marshalling/jboss-marshalling-river -->
+           <!-- <dependency>
+                <groupId>org.jboss.marshalling</groupId>
+                <artifactId>jboss-marshalling-river</artifactId>
+                <version>1.4.11.Final</version>
+            </dependency>
+            &lt;!&ndash; https://mvnrepository.com/artifact/org.jboss.marshalling/jboss-marshalling-serial &ndash;&gt;
+            <dependency>
+                <groupId>org.jboss.marshalling</groupId>
+                <artifactId>jboss-marshalling-serial</artifactId>
+                <version>1.4.11.Final</version>
+                <scope>test</scope>
+            </dependency>-->
+
+
 
         </dependencies>
 

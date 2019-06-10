@@ -1,0 +1,18 @@
+分布式事务TX-LCN框架的使用(5.0.2.RELEASE为例):
+官方教程https://txlcn.org/zh-cn/docs/start.html
+ 1、安装redis和mysql
+ 2、去github下载txlcn-tm模块。网址https://github.com/codingapi/tx-lcn/releases
+ 3、把txlcn-tm模块导入项目，修改其properties配置文件，启动
+ 4、在需要处理事务的模块导入2个依赖，依赖如下
+ 5、在springboot启动类上添加@EnableDistributedTransaction，在需要事务的方法上添加@LcnTransaction和@Transactional
+ 6、如果事务不起作用。先看DataSourceAspect的切面有没有被执行，没有的话，自己重写。如DbConnectAop所示
+
+         <dependency>
+             <groupId>com.codingapi.txlcn</groupId>
+             <artifactId>txlcn-tc</artifactId>
+         </dependency>
+
+         <dependency>
+             <groupId>com.codingapi.txlcn</groupId>
+             <artifactId>txlcn-txmsg-netty</artifactId>
+         </dependency>

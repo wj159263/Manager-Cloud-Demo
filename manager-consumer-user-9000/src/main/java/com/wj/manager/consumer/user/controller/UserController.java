@@ -38,6 +38,17 @@ public class UserController {
     }
 
     @ResponseBody
+    @GetMapping("/handle/ta")
+    public String handleTest123(){
+        return "/handle/test1231//////";
+    }
+    @ResponseBody
+    @GetMapping("/handle/td")
+    public String handleTest31(){
+        return "/handle/test31//////";
+    }
+
+    @ResponseBody
     @GetMapping("/handle/test1")
     @PreAuthorize("hasAuthority('/u')")
     public String handleTest1(){

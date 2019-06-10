@@ -16,8 +16,15 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @GetMapping("/test/insert")
+    public Object testGlobalTran(){
+        userService.insert();
+        return "success";
+    }
+
     @GetMapping("/login")
     public BaseResult login(String account ,String password){
+        System.out.println("controller:"+userService.getClass().getName());
         BaseResult baseResult = checkLogin(account, password);
         if(baseResult != null){
             return baseResult;

@@ -1,3 +1,4 @@
+/*
 package com.wj.manager.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,27 +32,35 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsServiceImpl);
     }
-  /*@Override
+  */
+/*@Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers("/oauth/token","/oauth/check_token");
 
-    }*/
+    }*//*
 
-   /* @Override
+
+   */
+/* @Override
     public void configure(HttpSecurity http) throws Exception {
        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .csrf().disable();
-              *//*  .authorizeRequests()
+              *//*
+*/
+/*  .authorizeRequests()
 
                 .antMatchers("/v2/api-docs", "/swagger-resources/configuration/ui",
                         "/swagger-resources","/swagger-resources/configuration/security",
                         "/swagger-ui.html","/webjars/**","/course/coursepic/list/**","/course/courseview/**").permitAll()
                 .anyRequest().authenticated();*//*
+*/
+/*
 
 
     }
-*/
+*//*
+
 
 
 
@@ -97,4 +106,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new JwtTokenStore(jwtAccessTokenConverter());
     }
 
-}
+}*/

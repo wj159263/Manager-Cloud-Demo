@@ -1,6 +1,5 @@
 package com.wj.manager.provider.user.config;
 
-import org.springframework.amqp.core.*;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * RabbitmqConfig中配置queue、exchange，在其他地方使用RabbitTemplate
  */
+/*
 @Configuration
 public class RabbitmqConfig {
     public static final String QUEUE_MSG = "queue_message_boot";
@@ -50,3 +50,4 @@ public class RabbitmqConfig {
 
 
 }
+*/

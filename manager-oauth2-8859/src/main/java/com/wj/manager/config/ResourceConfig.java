@@ -1,3 +1,4 @@
+/*
 package com.wj.manager.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +13,11 @@ import org.springframework.security.oauth2.provider.error.OAuth2AuthenticationEn
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 
+*/
 /**
  * 资源服务器，EnableResourceServer相当添加了一个filter
- */
+ *//*
+
 @Configuration
 @EnableResourceServer
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
@@ -32,9 +35,9 @@ public class ResourceConfig extends ResourceServerConfigurerAdapter {
                 .antMatchers("/v2/api-docs", "/swagger-resources/configuration/ui",
                         "/swagger-resources","/swagger-resources/configuration/security",
                         "/swagger-ui.html","/webjars/**","/course/coursepic/list/**","/course/courseview/**").permitAll()
-                .antMatchers("/oauth/token","/oauth/check_token","/oauth/**","/auth/logout","/auth/login").permitAll()
+                .antMatchers("/oauth/token","/oauth/check_token","/oauth/**","/auth/logout","/auth/login","/auth/unlock","/auth/**").permitAll()
                 .anyRequest().authenticated();
                 //.anyRequest().permitAll();
     }
 
-}
+}*/

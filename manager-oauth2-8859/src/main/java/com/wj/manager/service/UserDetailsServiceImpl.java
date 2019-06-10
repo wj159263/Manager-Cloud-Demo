@@ -1,3 +1,4 @@
+/*
 package com.wj.manager.service;
 
 import com.wj.manager.common.entity.SysUser;
@@ -55,3 +56,4 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 
 }
+*/

@@ -1,10 +1,13 @@
 package com.wj.manager.common.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Table(name = "sys_user")
-public class SysUser {
+public class SysUser implements Serializable{
+
+
     /**
      * 主键id
      */

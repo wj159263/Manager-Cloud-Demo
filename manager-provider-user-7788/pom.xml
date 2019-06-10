@@ -16,6 +16,33 @@
     <dependencies>
 
         <dependency>
+            <groupId>com.codingapi.txlcn</groupId>
+            <artifactId>txlcn-tc</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.codingapi.txlcn</groupId>
+            <artifactId>txlcn-txmsg-netty</artifactId>
+        </dependency>
+       <!-- <dependency>
+        <groupId>com.wj.manager</groupId>
+        <artifactId>manager-txlcn-common</artifactId>
+        <version>${project.parent.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+
+            </exclusions>
+    </dependency>-->
+        <dependency>
+            <groupId>com.wj.manager</groupId>
+            <artifactId>manager-api</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>com.rabbitmq</groupId>
             <artifactId>amqp-client</artifactId>
         </dependency>
@@ -47,7 +74,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.wj.manager.provider.user.UserProvider7788_App</mainClass>
+                    <mainClass>com.wj.manager.UserProvider7788_App</mainClass>
                 </configuration>
             </plugin>
 

@@ -14,14 +14,27 @@
     <artifactId>manager-oauth2-8859</artifactId>
     <dependencies>
         <dependency>
+            <groupId>com.codingapi.txlcn</groupId>
+            <artifactId>txlcn-tc</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.codingapi.txlcn</groupId>
+            <artifactId>txlcn-txmsg-netty</artifactId>
+        </dependency>
+       <!-- <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-security</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-oauth2</artifactId>
-        </dependency>
-
+        </dependency>-->
+       <!-- <dependency>
+            <groupId>com.wj.manager</groupId>
+            <artifactId>manager-txlcn-common</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>-->
         <dependency>
             <groupId>com.wj.manager</groupId>
             <artifactId>manager-entity</artifactId>
@@ -37,6 +50,12 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.wj.manager</groupId>
+            <artifactId>manager-api</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+
     </dependencies>
     <!-- 下面这个必须加,打包运行用的-->
     <build>

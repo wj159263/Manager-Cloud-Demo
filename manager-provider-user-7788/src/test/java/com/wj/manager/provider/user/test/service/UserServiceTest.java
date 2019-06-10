@@ -1,7 +1,7 @@
 package com.wj.manager.provider.user.test.service;
 
+import com.wj.manager.UserProvider7788_App;
 import com.wj.manager.common.entity.SysUser;
-import com.wj.manager.provider.user.UserProvider7788_App;
 import com.wj.manager.provider.user.mapper.SysUserMapper;
 import com.wj.manager.provider.user.service.UserService;
 import org.junit.Assert;

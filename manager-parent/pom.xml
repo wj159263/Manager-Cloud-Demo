@@ -29,6 +29,9 @@
         <module>../manager-redis-8502</module>
         <module>../manager-sso-8880</module>
         <module>../manager-oauth2-8859</module>
+        <module>../manager-txlcn-common</module>
+        <module>../manager-pay-wecheat</module>
+        <module>../manager-zookeeper-lock</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -55,10 +58,53 @@
         <commons-io.version>1.3.2</commons-io.version>
         <commons-lang3.version>3.8.1</commons-lang3.version>
         <rabbitmq.version>5.2.0</rabbitmq.version>
+        <fescar.version>0.1.3</fescar.version>
+        <lcn.tx.version>4.1.0</lcn.tx.version>
+        <lcn.tx.version2>5.0.2.RELEASE</lcn.tx.version2>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.codingapi.txlcn</groupId>
+                <artifactId>txlcn-tc</artifactId>
+                <version>${lcn.tx.version2}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.codingapi.txlcn</groupId>
+                <artifactId>txlcn-txmsg-netty</artifactId>
+                <version>${lcn.tx.version2}</version>
+            </dependency>
+           <!-- <dependency>
+                <groupId>com.codingapi</groupId>
+                <artifactId>transaction-springcloud</artifactId>
+                <version>${lcn.tx.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>*</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>com.codingapi</groupId>
+                <artifactId>tx-plugins-db</artifactId>
+                <version>${lcn.tx.version}</version>
+            </dependency>-->
+            <!--分布式事务start-->
+           <!-- <dependency>
+                <groupId>com.alibaba.fescar</groupId>
+                <artifactId>fescar-tm</artifactId>
+                <version>${fescar.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.fescar</groupId>
+                <artifactId>fescar-spring</artifactId>
+                <version>${fescar.version}</version>
+            </dependency>-->
+            <!--分布式事务end-->
+
             <!-- https://mvnrepository.com/artifact/com.rabbitmq/amqp-client -->
             <dependency>
                 <groupId>com.rabbitmq</groupId>

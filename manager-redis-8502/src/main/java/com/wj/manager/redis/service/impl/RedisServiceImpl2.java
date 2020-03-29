@@ -31,6 +31,11 @@ public class RedisServiceImpl2 {
         System.out.println(hobbit);*/
 
     }
+    
+     @Override
+    public Object userScript() {
+        return null;
+    }
 
 
 }

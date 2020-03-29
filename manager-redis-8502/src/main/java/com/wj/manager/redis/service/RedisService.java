@@ -5,4 +5,6 @@ public interface RedisService {
     public void put(String key, String value, long seconds);
 
     public Object get(String key);
+    
+    public Object userScript();
 }

@@ -20,4 +20,8 @@ public class RedisController {
     public String get(String key){
        return String.valueOf( redisService.get(key));
     }
+    @GetMapping("/test1")
+    public Object testScript(){
+        return redisService.userScript();
+    }
 }

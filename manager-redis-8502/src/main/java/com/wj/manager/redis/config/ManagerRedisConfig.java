@@ -18,7 +18,7 @@ import java.net.UnknownHostException;
 
 @Configuration
 public class ManagerRedisConfig {
-    @Bean
+    /*@Bean
     public RedisTemplate<Object, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) throws UnknownHostException {
         RedisTemplate<Object, Object> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(redisConnectionFactory);
@@ -30,11 +30,33 @@ public class ManagerRedisConfig {
         om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
         jackson2JsonRedisSerializer.setObjectMapper(om);
 
-        //redisTemplate.setKeySerializer(new StringRedisSerializer());
-        redisTemplate.setKeySerializer(jackson2JsonRedisSerializer);
+        redisTemplate.setKeySerializer(new StringRedisSerializer());
+        //redisTemplate.setKeySerializer(jackson2JsonRedisSerializer);
         redisTemplate.setValueSerializer(jackson2JsonRedisSerializer);
         redisTemplate.setHashKeySerializer(jackson2JsonRedisSerializer);
         redisTemplate.setHashValueSerializer(jackson2JsonRedisSerializer);
+        return redisTemplate;
+
+    }*/
+
+    @Bean
+    public RedisTemplate<String, Serializable> redisTemplate(RedisConnectionFactory redisConnectionFactory) throws UnknownHostException {
+        RedisTemplate<String, Serializable> redisTemplate = new RedisTemplate<>();
+        redisTemplate.setConnectionFactory(redisConnectionFactory);
+        // 使用Jackson2JsonRedisSerialize 替换默认序列化(默认采用的是JDK序列化)
+        //注意：被序列化的对象一定要实现Serializeable、空参构造器、setter
+        Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<>(Object.class);
+        ObjectMapper om = new ObjectMapper();
+        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+        //om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);最好不要这项
+        jackson2JsonRedisSerializer.setObjectMapper(om);
+        StringRedisSerializer stringRedisSerializer = new StringRedisSerializer();
+        redisTemplate.setKeySerializer(stringRedisSerializer);
+        //redisTemplate.setKeySerializer(jackson2JsonRedisSerializer);
+        redisTemplate.setValueSerializer(jackson2JsonRedisSerializer);
+        redisTemplate.setHashKeySerializer(stringRedisSerializer);
+        redisTemplate.setHashValueSerializer(jackson2JsonRedisSerializer);
+        redisTemplate.afterPropertiesSet();
         return redisTemplate;
 
     }

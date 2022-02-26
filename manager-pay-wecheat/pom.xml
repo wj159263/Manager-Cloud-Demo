@@ -20,7 +20,7 @@
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-http</artifactId>
-            <version>4.5.8</version>
+            <version>5.7.19</version>
         </dependency>
 
 
